@@ -12,7 +12,7 @@ export default function Footer() {
             <Linkedin className="w-6 h-6" />
           </a>
         </div>
-        <p className="text-gray-400">&copy; 2023 Thiago Loureiro. All rights reserved.</p>
+        <p className="text-gray-400">&copy; 2025 Thiago Loureiro. All rights reserved.</p>
       </div>
     </footer>
   )
