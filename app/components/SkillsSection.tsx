@@ -3,10 +3,8 @@ export default function SkillsSection() {
     ".NET Core", "C#", "WebApis", "CQRS", "Actor Based Frameworks", "MicroServices Architecture",
     "gRPC", "GraphQL", "Service Discovery", "API Gateway", "SQL/NoSQL Databases", "Redis",
     "AMQP", "MQTT", "Design Patterns", "SOLID Principles", "DRY", "KISS", "GIT",
-    "Scrum", "Microsoft Orleans", "Azure DevOps", "CD/CI", "TeamCity", "VSTS", "Rancher",
-    "Kubernetes", "Docker", "Flutter", "Dart", "Domain Driven Design", "Clean Architecture",
-    "Micro Frontends", "Micro Services", "Event Driven Architecture", "Event Sourcing",
-    "Event Sourcing", "Event Driven Architecture"
+    "Scrum", "Microsoft Orleans", "Azure DevOps", "CI/CD", "TeamCity", "VSTS", "Rancher",
+    "Kubernetes", "Docker", "Flutter", "Dart", "Domain Driven Design", "Clean Architecture", "Event Driven Architecture", "Event Sourcing"
    
   ]
 
