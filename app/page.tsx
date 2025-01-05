@@ -6,6 +6,7 @@ import Background from './components/Background'
 import CVButton from './components/CVButton'
 import { Code, Cpu, RefreshCw, Server, GitBranch, Users } from 'lucide-react'
 import ArticlesSection from './components/ArticlesSection'
+import GitHubContribution from './components/GitHubContribution'
 
 export default function Home() {
   return (
@@ -36,6 +37,8 @@ export default function Home() {
         </section>
 
         <SkillsSection />
+
+        <GitHubContribution />
 
         <section className="mb-16 relative">
           <h2 className="text-3xl font-bold mb-8 text-center">Competencies</h2>
