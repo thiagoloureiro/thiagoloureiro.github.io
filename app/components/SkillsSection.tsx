@@ -2,9 +2,12 @@ export default function SkillsSection() {
   const skills = [
     ".NET Core", "C#", "WebApis", "CQRS", "Actor Based Frameworks", "MicroServices Architecture",
     "gRPC", "GraphQL", "Service Discovery", "API Gateway", "SQL/NoSQL Databases", "Redis",
-    "AMQP", "MQTT", "Design Patterns", "SOLID Principles", "DRY", "KISS", "D.I", "GIT",
-    "Scrum", "Microsoft Orleans", "Azure Devops", "CD/CI", "TeamCity", "VSTS", "Rancher",
-    "Kubernetes", "Docker"
+    "AMQP", "MQTT", "Design Patterns", "SOLID Principles", "DRY", "KISS", "GIT",
+    "Scrum", "Microsoft Orleans", "Azure DevOps", "CD/CI", "TeamCity", "VSTS", "Rancher",
+    "Kubernetes", "Docker", "Flutter", "Dart", "Domain Driven Design", "Clean Architecture",
+    "Micro Frontends", "Micro Services", "Event Driven Architecture", "Event Sourcing",
+    "Event Sourcing", "Event Driven Architecture"
+   
   ]
 
   return (

@@ -4,7 +4,8 @@ import SkillsSection from './components/SkillsSection'
 import ProjectsSection from './components/ProjectsSection'
 import Background from './components/Background'
 import CVButton from './components/CVButton'
-import { Code, Cpu, RefreshCw, Server } from 'lucide-react'
+import { Code, Cpu, RefreshCw, Server, GitBranch, Users } from 'lucide-react'
+import ArticlesSection from './components/ArticlesSection'
 
 export default function Home() {
   return (
@@ -28,8 +29,8 @@ export default function Home() {
           </div>
           <h1 className="text-5xl font-bold mb-4">Thiago Loureiro</h1>
           <h2 className="text-2xl text-blue-400 mb-8">Solution Architect</h2>
-          <p className="text-xl max-w-2xl mx-auto mb-8">
-            Experienced solution architect specializing in microservices, cloud architecture, and high-performance systems.
+          <p className="text-xl max-w-4xl mx-auto mb-8">
+            Experienced Solution Architect with expertise in microservices, cloud architecture, and high-performance systems. Specializing in containerization technologies like Kubernetes, I excel at designing scalable, resilient infrastructures and implementing DevOps practices for seamless deployment pipelines. A proven leader in team management and mentoring, I am passionate about empowering teams to deliver cutting-edge solutions while fostering growth and collaboration.
           </p>
           <CVButton />
         </section>
@@ -38,7 +39,7 @@ export default function Home() {
 
         <section className="mb-16 relative">
           <h2 className="text-3xl font-bold mb-8 text-center">Competencies</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="bg-gray-800 p-6 rounded-lg">
               <Cpu className="w-12 h-12 text-blue-400 mb-4" />
               <h3 className="text-xl font-semibold mb-2">Team Management</h3>
@@ -59,8 +60,20 @@ export default function Home() {
               <h3 className="text-xl font-semibold mb-2">Application Modernization</h3>
               <p>Expertise in modernizing legacy systems and migrating to cloud-native architectures.</p>
             </div>
+            <div className="bg-gray-800 p-6 rounded-lg">
+              <GitBranch className="w-12 h-12 text-blue-400 mb-4" />
+              <h3 className="text-xl font-semibold mb-2">DevOps</h3>
+              <p>Strong expertise in CI/CD, containerization, and cloud infrastructure automation.</p>
+            </div>
+            <div className="bg-gray-800 p-6 rounded-lg">
+              <Users className="w-12 h-12 text-blue-400 mb-4" />
+              <h3 className="text-xl font-semibold mb-2">Mentoring</h3>
+              <p>Passionate about knowledge sharing and helping teams grow through technical mentorship and guidance.</p>
+            </div>
           </div>
         </section>
+
+        <ArticlesSection />
 
         <ProjectsSection />
       </main>
