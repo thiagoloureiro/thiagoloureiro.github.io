@@ -33,7 +33,7 @@ export default function Home() {
           <p className="text-xl max-w-4xl mx-auto mb-8">
             Experienced Solution Architect with expertise in microservices, cloud architecture, and high-performance systems. Specializing in containerization technologies like Kubernetes, I excel at designing scalable, resilient infrastructures and implementing DevOps practices for seamless deployment pipelines. A proven leader in team management and mentoring, I am passionate about empowering teams to deliver cutting-edge solutions while fostering growth and collaboration.
           </p>
-          <CVButton />
+     
         </section>
 
         <SkillsSection />
