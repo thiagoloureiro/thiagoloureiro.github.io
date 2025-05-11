@@ -12,6 +12,10 @@ RUN npm run build
 
 # Stage 2 - Production environment
 FROM node:23-alpine
+
+# Create a non-root user and group
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+
 WORKDIR /app
 
 # Copy the build output and necessary files
@@ -20,6 +24,12 @@ COPY --from=next-build /app/package.json /app/package-lock.json ./
 
 # Install production dependencies only
 RUN npm install --production
+
+# Change ownership of files to the non-root user
+RUN chown -R appuser:appgroup /app
+
+# Switch to the non-root user
+USER appuser
 
 # Expose port 3000 for the Next.js server
 EXPOSE 3000
