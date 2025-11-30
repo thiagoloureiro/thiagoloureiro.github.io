@@ -8,27 +8,111 @@ interface GitHubStats {
   commits: number
 }
 
+const GITHUB_USERNAME = 'thiagoloureiro'
+
 export default function GitHubContribution() {
   const [stats, setStats] = useState<GitHubStats>({
     totalContributions: 0,
     pullRequests: 0,
     commits: 0
   })
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchGitHubStats = async () => {
       try {
-        const response = await fetch('https://api.github.com/users/thiagoloureiro')
-        const userData = await response.json()
+        setLoading(true)
         
-        // For demonstration, using public_repos as PR count since GitHub API needs authentication for detailed stats
+        // Fetch pull requests count
+        const prResponse = await fetch(
+          `https://api.github.com/search/issues?q=author:${GITHUB_USERNAME}+type:pr+is:merged`
+        )
+        const prData = await prResponse.json()
+        const pullRequests = prData.total_count || 0
+
+        // Fetch all repositories (paginated)
+        let allRepos: any[] = []
+        let page = 1
+        let hasMore = true
+
+        while (hasMore) {
+          const reposResponse = await fetch(
+            `https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&page=${page}&sort=updated`
+          )
+          
+          if (!reposResponse.ok) break
+          
+          const repos = await reposResponse.json()
+          if (repos.length === 0) {
+            hasMore = false
+          } else {
+            allRepos = [...allRepos, ...repos]
+            page++
+            // Limit to first 3 pages to avoid rate limits (300 repos max)
+            if (page > 3) hasMore = false
+          }
+        }
+
+        // Calculate total commits from repositories
+        // We'll fetch commit counts for each repo (limited to avoid rate limits)
+        let totalCommits = 0
+        const reposToCheck = allRepos.slice(0, 50) // Limit to 50 repos to avoid rate limits
+        
+        await Promise.all(
+          reposToCheck.map(async (repo) => {
+            try {
+              // Get contributor stats for the repo
+              // We need to paginate through contributors to find the user
+              let foundUser = false
+              let page = 1
+              
+              while (!foundUser && page <= 10) { // Limit to 10 pages per repo
+                const contributorsResponse = await fetch(
+                  `https://api.github.com/repos/${repo.full_name}/contributors?per_page=100&page=${page}&anon=false`
+                )
+                
+                if (!contributorsResponse.ok) break
+                
+                const contributors = await contributorsResponse.json()
+                if (contributors.length === 0) break
+                
+                const userContributions = contributors.find(
+                  (contributor: any) => contributor.login === GITHUB_USERNAME
+                )
+                
+                if (userContributions) {
+                  totalCommits += userContributions.contributions
+                  foundUser = true
+                } else {
+                  page++
+                }
+              }
+            } catch (error) {
+              // Silently fail for individual repos
+              console.warn(`Failed to fetch commits for ${repo.name}:`, error)
+            }
+          })
+        )
+
+        // Scale up commits if we limited the repos checked
+        if (allRepos.length > reposToCheck.length) {
+          const scaleFactor = allRepos.length / reposToCheck.length
+          totalCommits = Math.round(totalCommits * scaleFactor)
+        }
+
+        // Total contributions is a combination of commits, PRs, and issues
+        // We'll use commits + PRs as a proxy
+        const totalContributions = totalCommits + pullRequests
+
         setStats({
-          totalContributions: userData.public_repos * 50, // Approximation
-          pullRequests: userData.public_repos,
-          commits: userData.public_repos * 100 // Approximation
+          totalContributions,
+          pullRequests,
+          commits: totalCommits
         })
       } catch (error) {
         console.error('Error fetching GitHub stats:', error)
+      } finally {
+        setLoading(false)
       }
     }
 
@@ -49,21 +133,27 @@ export default function GitHubContribution() {
           <GitCommit className="w-8 h-8 text-blue-400" />
           <div>
             <h3 className="text-lg font-semibold text-gray-300">Total Commits</h3>
-            <p className="text-2xl font-bold text-blue-400">{stats.commits.toLocaleString()}</p>
+            <p className="text-2xl font-bold text-blue-400">
+              {loading ? '...' : stats.commits.toLocaleString()}
+            </p>
           </div>
         </div>
         <div className="bg-gray-800 p-6 rounded-lg flex items-center space-x-4">
           <GitPullRequest className="w-8 h-8 text-blue-400" />
           <div>
             <h3 className="text-lg font-semibold text-gray-300">Pull Requests</h3>
-            <p className="text-2xl font-bold text-blue-400">{stats.pullRequests.toLocaleString()}</p>
+            <p className="text-2xl font-bold text-blue-400">
+              {loading ? '...' : stats.pullRequests.toLocaleString()}
+            </p>
           </div>
         </div>
         <div className="bg-gray-800 p-6 rounded-lg flex items-center space-x-4">
           <GitBranch className="w-8 h-8 text-blue-400" />
           <div>
             <h3 className="text-lg font-semibold text-gray-300">Contributions</h3>
-            <p className="text-2xl font-bold text-blue-400">{stats.totalContributions.toLocaleString()}</p>
+            <p className="text-2xl font-bold text-blue-400">
+              {loading ? '...' : stats.totalContributions.toLocaleString()}
+            </p>
           </div>
         </div>
       </div>
