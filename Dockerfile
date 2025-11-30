@@ -1,5 +1,5 @@
 # Stage 1 - Build the Next.js application
-FROM node:24-alpine AS next-build
+FROM node:25-alpine AS next-build
 WORKDIR /app
 
 # Copy only the necessary files for dependency installation
@@ -11,7 +11,7 @@ COPY . ./
 RUN npm run build
 
 # Stage 2 - Production environment
-FROM node:24-alpine
+FROM node:25-alpine
 
 # Create a non-root user and group
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
