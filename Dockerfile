@@ -1,7 +1,7 @@
 # Stage 1 - Build the Next.js application
 FROM node:25-alpine AS next-build
 WORKDIR /app
-
+RUN apk update && apk upgrade
 # Copy only the necessary files for dependency installation
 COPY package.json package-lock.json ./
 RUN npm install
