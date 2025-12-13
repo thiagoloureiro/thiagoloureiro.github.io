@@ -13,6 +13,8 @@ RUN npm run build
 # Stage 2 - Production environment
 FROM node:25-alpine
 
+RUN apk update && apk upgrade
+
 # Create a non-root user and group
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 
