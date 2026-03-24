@@ -10,16 +10,16 @@
   },
   "dependencies": {
     "lucide-react": "^0.577.0",
-    "next": "16.1.6",
+    "next": "16.2.1",
     "react": "^19",
     "react-dom": "^19"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.2.1",
+    "@tailwindcss/postcss": "^4.2.2",
     "@types/node": "^25",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "knip": "^5.86.0",
+    "knip": "^6.0.4",
     "postcss": "^8.5.8",
     "typescript": "^5"
   }
