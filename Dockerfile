@@ -11,27 +11,14 @@ COPY . ./
 RUN npm run build
 
 # Stage 2 - Production environment
-FROM node:25-alpine
-
-RUN apk update && apk upgrade
-
-# Create a non-root user and group
-RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+FROM dhi.io/node:25
 
 WORKDIR /app
 
 # Copy the build output and necessary files
 COPY --from=next-build /app/.next ./.next
 COPY --from=next-build /app/package.json /app/package-lock.json ./
-
-# Install production dependencies only
-RUN npm install --production
-
-# Change ownership of files to the non-root user
-RUN chown -R appuser:appgroup /app
-
-# Switch to the non-root user
-USER appuser
+COPY --from=next-build /app/node_modules ./node_modules
 
 # Expose port 3000 for the Next.js server
 EXPOSE 3000
