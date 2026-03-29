@@ -4,14 +4,15 @@ WORKDIR /app
 RUN apk update && apk upgrade
 # Copy only the necessary files for dependency installation
 COPY package.json package-lock.json ./
-RUN npm install
+RUN npm ci
 
 # Copy the rest of the application code
 COPY . ./
 RUN npm run build
 
 # Stage 2 - Production environment
-FROM dhi.io/node:25
+FROM node:25-alpine 
+RUN apk update && apk upgrade
 
 WORKDIR /app
 
