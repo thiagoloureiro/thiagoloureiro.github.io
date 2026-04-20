@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Network, Container, Code2 } from 'lucide-react'
+import { Network, Container, Code2, Shield, AlertTriangle, Lock, HardDrive } from 'lucide-react'
 
 export default function ArticlesSection() {
   const articles = [
@@ -20,6 +20,30 @@ export default function ArticlesSection() {
       description: "An insightful analysis of software architecture patterns, discussing their benefits and potential pitfalls in modern development.",
       url: "https://medium.com/@thiagoloureiro/the-good-and-the-villain-ca81aae3464a",
       icon: Code2
+    },
+    {
+      title: "Stop Shipping Vulnerabilities: Harden Your Docker Images Today",
+      description: "Practical steps to reduce attack surface and ship container images with fewer known vulnerabilities.",
+      url: "https://medium.com/@thiagoloureiro/stop-shipping-vulnerabilities-harden-your-docker-images-today-8ffeecd48a2c",
+      icon: Shield
+    },
+    {
+      title: "The Hidden Risks of Outdated Container Images: A Security Perspective",
+      description: "Why stale base images and layers quietly increase risk, and what to watch for in your supply chain.",
+      url: "https://medium.com/@thiagoloureiro/the-hidden-risks-of-outdated-container-images-a-security-perspective-1663d52f0fd2",
+      icon: AlertTriangle
+    },
+    {
+      title: "Kubernetes cert-manager: Free TLS Certificates with Let's Encrypt and Helm",
+      description: "Automate TLS for your cluster with cert-manager, Let's Encrypt, and Helm-based installation patterns.",
+      url: "https://medium.com/@thiagoloureiro/kubernetes-cert-manager-free-tls-certificates-with-lets-encrypt-and-helm-da1e8117e063",
+      icon: Lock
+    },
+    {
+      title: "Seamless Storage: Configuring Kubernetes PVC for Windows Shared Folders with SMB",
+      description: "Wire Kubernetes persistent volumes to Windows SMB shares so workloads can use familiar shared storage.",
+      url: "https://medium.com/@thiagoloureiro/seamless-storage-configuring-kubernetes-pvc-for-windows-shared-folders-with-smb-2b44c01570d2",
+      icon: HardDrive
     }
   ]
 
