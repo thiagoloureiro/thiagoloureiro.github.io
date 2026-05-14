@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import { Github, Linkedin, BookOpen } from 'lucide-react'
+import { BookOpen } from 'lucide-react'
+import { GitHubIcon, LinkedInIcon } from './SocialIcons'
 
 export default function Header() {
   return (
@@ -12,14 +13,14 @@ export default function Header() {
             target="_blank"
             className="text-gray-400 hover:text-blue-400 transition-colors"
           >
-            <Github className="w-6 h-6" />
+            <GitHubIcon className="w-6 h-6" />
           </Link>
           <Link
             href="https://www.linkedin.com/in/thiago-loureiro-de-azevedo-dev/"
             target="_blank"
             className="text-gray-400 hover:text-blue-400 transition-colors"
           >
-            <Linkedin className="w-6 h-6" />
+            <LinkedInIcon className="w-6 h-6" />
           </Link>
           <Link
             href="https://medium.com/@thiagoloureiro"
@@ -33,4 +34,3 @@ export default function Header() {
     </header>
   )
 }
-
