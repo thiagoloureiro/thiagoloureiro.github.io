@@ -1,28 +1,23 @@
-# Stage 1 - Build the Next.js application
-FROM node:25-alpine AS next-build
+# Stage 1: Build
+FROM node:24 AS builder
 WORKDIR /app
-RUN apk update && apk upgrade
-# Copy only the necessary files for dependency installation
 COPY package.json package-lock.json ./
 RUN npm ci
-
-# Copy the rest of the application code
-COPY . ./
+COPY . .
 RUN npm run build
 
-# Stage 2 - Production environment
-FROM node:25-alpine 
-RUN apk update && apk upgrade
-
+# Stage 2: Production
+FROM dhi.io/node:24 AS runner
 WORKDIR /app
 
-# Copy the build output and necessary files
-COPY --from=next-build /app/.next ./.next
-COPY --from=next-build /app/package.json /app/package-lock.json ./
-COPY --from=next-build /app/node_modules ./node_modules
+ENV NODE_ENV=production
+ENV PORT=8080
+ENV HOSTNAME=0.0.0.0
 
-# Expose port 3000 for the Next.js server
-EXPOSE 3000
+COPY --from=builder /app/public ./public
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
-# Start the Next.js application
-CMD ["npm", "start"]
+EXPOSE 8080
+
+CMD ["node", "server.js"]
