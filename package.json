@@ -21,6 +21,7 @@
     "@types/react-dom": "^19",
     "knip": "^6.16.0",
     "postcss": "^8.5.15",
+    "tailwindcss-animate": "^1.0.7",
     "typescript": "^6"
   }
 }
