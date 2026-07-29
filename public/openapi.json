@@ -1,0 +1,46 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Thiago Loureiro Portfolio API",
+    "description": "Read-only portfolio discovery API for AI agents.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://thiagoloureiro.github.io"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Get portfolio profile",
+        "description": "Returns the professional profile. Use Accept: text/markdown for markdown content.",
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "enum": ["text/html", "text/markdown"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Portfolio profile content"
+          }
+        }
+      }
+    },
+    "/api/health": {
+      "get": {
+        "summary": "Health check",
+        "responses": {
+          "200": {
+            "description": "Service is healthy"
+          }
+        }
+      }
+    }
+  }
+}
