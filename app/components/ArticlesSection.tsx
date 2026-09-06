@@ -1,85 +1,85 @@
-import Link from 'next/link'
-import { Network, Container, Code2, Shield, AlertTriangle, Lock, HardDrive } from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
+
+const articles = [
+  {
+    title: 'Setting up Traefik Ingress Controller in Kubernetes',
+    topic: 'Kubernetes',
+    url: 'https://medium.com/@thiagoloureiro/setting-up-traefik-ingress-controller-in-kubernetes-2c659a2c7347',
+  },
+  {
+    title: 'How Rancher Can Boost Your Kubernetes Productivity',
+    topic: 'Platform',
+    url: 'https://medium.com/@thiagoloureiro/how-rancher-can-boost-your-kubernetes-productivity-21985dd1d689',
+  },
+  {
+    title: 'The Good and The Villain',
+    topic: 'Architecture',
+    url: 'https://medium.com/@thiagoloureiro/the-good-and-the-villain-ca81aae3464a',
+  },
+  {
+    title: 'Stop Shipping Vulnerabilities: Harden Your Docker Images Today',
+    topic: 'Security',
+    url: 'https://medium.com/@thiagoloureiro/stop-shipping-vulnerabilities-harden-your-docker-images-today-8ffeecd48a2c',
+  },
+  {
+    title: 'The Hidden Risks of Outdated Container Images',
+    topic: 'Security',
+    url: 'https://medium.com/@thiagoloureiro/the-hidden-risks-of-outdated-container-images-a-security-perspective-1663d52f0fd2',
+  },
+  {
+    title: 'Kubernetes cert-manager with Let’s Encrypt and Helm',
+    topic: 'Kubernetes',
+    url: 'https://medium.com/@thiagoloureiro/kubernetes-cert-manager-free-tls-certificates-with-lets-encrypt-and-helm-da1e8117e063',
+  },
+  {
+    title: 'Kubernetes PVC for Windows Shared Folders with SMB',
+    topic: 'Storage',
+    url: 'https://medium.com/@thiagoloureiro/seamless-storage-configuring-kubernetes-pvc-for-windows-shared-folders-with-smb-2b44c01570d2',
+  },
+]
 
 export default function ArticlesSection() {
-  const articles = [
-    {
-      title: "Setting up Traefik Ingress Controller in Kubernetes",
-      description: "A comprehensive guide on implementing Traefik as an Ingress Controller in your Kubernetes cluster, with step-by-step configuration instructions.",
-      url: "https://medium.com/@thiagoloureiro/setting-up-traefik-ingress-controller-in-kubernetes-2c659a2c7347",
-      icon: Network
-    },
-    {
-      title: "How Rancher Can Boost Your Kubernetes Productivity",
-      description: "Explore how Rancher can simplify Kubernetes cluster management and enhance your team's productivity with its powerful features.",
-      url: "https://medium.com/@thiagoloureiro/how-rancher-can-boost-your-kubernetes-productivity-21985dd1d689",
-      icon: Container
-    },
-    {
-      title: "The Good and The Villain",
-      description: "An insightful analysis of software architecture patterns, discussing their benefits and potential pitfalls in modern development.",
-      url: "https://medium.com/@thiagoloureiro/the-good-and-the-villain-ca81aae3464a",
-      icon: Code2
-    },
-    {
-      title: "Stop Shipping Vulnerabilities: Harden Your Docker Images Today",
-      description: "Practical steps to reduce attack surface and ship container images with fewer known vulnerabilities.",
-      url: "https://medium.com/@thiagoloureiro/stop-shipping-vulnerabilities-harden-your-docker-images-today-8ffeecd48a2c",
-      icon: Shield
-    },
-    {
-      title: "The Hidden Risks of Outdated Container Images: A Security Perspective",
-      description: "Why stale base images and layers quietly increase risk, and what to watch for in your supply chain.",
-      url: "https://medium.com/@thiagoloureiro/the-hidden-risks-of-outdated-container-images-a-security-perspective-1663d52f0fd2",
-      icon: AlertTriangle
-    },
-    {
-      title: "Kubernetes cert-manager: Free TLS Certificates with Let's Encrypt and Helm",
-      description: "Automate TLS for your cluster with cert-manager, Let's Encrypt, and Helm-based installation patterns.",
-      url: "https://medium.com/@thiagoloureiro/kubernetes-cert-manager-free-tls-certificates-with-lets-encrypt-and-helm-da1e8117e063",
-      icon: Lock
-    },
-    {
-      title: "Seamless Storage: Configuring Kubernetes PVC for Windows Shared Folders with SMB",
-      description: "Wire Kubernetes persistent volumes to Windows SMB shares so workloads can use familiar shared storage.",
-      url: "https://medium.com/@thiagoloureiro/seamless-storage-configuring-kubernetes-pvc-for-windows-shared-folders-with-smb-2b44c01570d2",
-      icon: HardDrive
-    }
-  ]
-
   return (
-    <section id="articles" className="mb-16 relative">
-      <div className="absolute top-0 right-0 w-32 h-32 text-blue-400 opacity-20">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-          <polyline points="14 2 14 8 20 8"></polyline>
-          <line x1="16" y1="13" x2="8" y2="13"></line>
-          <line x1="16" y1="17" x2="8" y2="17"></line>
-          <polyline points="10 9 9 9 8 9"></polyline>
-        </svg>
-      </div>
-      <h2 className="text-3xl font-bold mb-8 text-center">Latest Articles</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {articles.map((article, index) => {
-          const IconComponent = article.icon
-          return (
-            <Link 
-              href={article.url}
-              key={index}
-              target="_blank"
-              className="bg-gray-800 p-6 rounded-lg hover:bg-gray-700 transition-colors group"
-            >
-              <div className="flex items-center mb-4">
-                <IconComponent className="w-8 h-8 text-blue-400 group-hover:text-blue-300 transition-colors" />
-              </div>
-              <h3 className="text-xl font-semibold mb-3 text-blue-400 group-hover:text-blue-300 transition-colors">
-                {article.title}
-              </h3>
-              <p className="text-gray-300">{article.description}</p>
-            </Link>
-          )
-        })}
+    <section id="writing" className="section-pad border-b border-ink-line">
+      <div className="mx-auto max-w-5xl px-6">
+        <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div className="max-w-2xl">
+            <p className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-accent-soft">
+              Writing
+            </p>
+            <h2 className="font-display text-3xl font-semibold tracking-tight text-paper md:text-4xl">
+              Notes on platforms, security, and architecture
+            </h2>
+          </div>
+          <a
+            href="https://medium.com/@thiagoloureiro"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 text-sm font-medium text-fog transition-colors hover:text-accent-soft"
+          >
+            All on Medium
+            <ArrowUpRight className="h-4 w-4" />
+          </a>
+        </div>
+
+        <ul className="space-y-0">
+          {articles.map((article) => (
+            <li key={article.url} className="border-t border-ink-line last:border-b">
+              <a
+                href={article.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex flex-col gap-2 py-5 transition-colors sm:flex-row sm:items-baseline sm:justify-between sm:gap-8"
+              >
+                <span className="font-medium text-paper transition-colors group-hover:text-accent-soft">
+                  {article.title}
+                </span>
+                <span className="shrink-0 text-sm text-fog">{article.topic}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   )
-} 
+}

@@ -1,31 +1,76 @@
-export default function SkillsSection() {
-  const skills = [
-    ".NET Core", "C#", "WebApis", "CQRS", "Actor Based Frameworks", "MicroServices Architecture",
-    "gRPC", "GraphQL", "Service Discovery", "API Gateway", "SQL/NoSQL Databases", "Redis",
-    "AMQP", "MQTT", "Design Patterns", "SOLID Principles", "DRY", "KISS", "GIT",
-    "Scrum", "Microsoft Orleans", "Azure DevOps", "CI/CD", "TeamCity", "VSTS", "Rancher",
-    "Kubernetes", "Docker", "Flutter", "Dart", "Domain Driven Design", "Clean Architecture", "Event Driven Architecture", "Event Sourcing"
-   
-  ]
+const groups = [
+  {
+    title: 'Architecture',
+    items: [
+      'Microservices & APIs',
+      'Domain-Driven Design',
+      'Event-Driven Systems',
+      'Clean Architecture',
+      'CQRS & Actor Models',
+      'gRPC / GraphQL',
+    ],
+  },
+  {
+    title: 'Platforms',
+    items: [
+      'Kubernetes & Docker',
+      'CI/CD & Azure DevOps',
+      'Rancher',
+      'Redis & SQL/NoSQL',
+      '.NET / C#',
+      'Flutter & Dart',
+    ],
+  },
+  {
+    title: 'Leadership',
+    items: [
+      'Team management',
+      'Technical mentoring',
+      'Architecture decisions',
+      'Application modernization',
+      'Critical delivery',
+      'Knowledge sharing',
+    ],
+  },
+]
 
+export default function SkillsSection() {
   return (
-    <section id="skills" className="mb-16 relative">
-      <div className="absolute top-0 right-0 w-32 h-32 text-blue-400 opacity-20">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-          <polyline points="15 3 21 3 21 9"></polyline>
-          <line x1="10" y1="14" x2="21" y2="3"></line>
-        </svg>
-      </div>
-      <h2 className="text-3xl font-bold mb-8 text-center">Skills & Tools</h2>
-      <div className="flex flex-wrap justify-center gap-4">
-        {skills.map((skill, index) => (
-          <span key={index} className="bg-gray-800 text-blue-400 px-3 py-1 rounded-full text-sm">
-            {skill}
-          </span>
-        ))}
+    <section id="expertise" className="section-pad border-b border-ink-line">
+      <div className="mx-auto max-w-5xl px-6">
+        <div className="mb-12 max-w-2xl">
+          <p className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-accent-soft">
+            Expertise
+          </p>
+          <h2 className="font-display text-3xl font-semibold tracking-tight text-paper md:text-4xl">
+            How I help teams ship
+          </h2>
+          <p className="mt-4 text-fog">
+            From architecture and platforms to mentoring—focused on systems that
+            scale and teams that grow with them.
+          </p>
+        </div>
+
+        <div className="grid gap-10 md:grid-cols-3 md:gap-8">
+          {groups.map((group) => (
+            <div key={group.title}>
+              <h3 className="font-display text-lg font-semibold text-paper">
+                {group.title}
+              </h3>
+              <ul className="mt-4 space-y-2.5">
+                {group.items.map((item) => (
+                  <li
+                    key={item}
+                    className="border-l border-accent/40 pl-3 text-fog"
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   )
 }
-
