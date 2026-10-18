@@ -45,8 +45,6 @@ export default function GitHubContribution() {
         setLoading(true)
         setError(false)
 
-        // Two search requests only — avoids the unauthenticated 60/hr core
-        // rate limit that the old per-repo contributors loop exhausted.
         const [pullRequests, commits] = await Promise.all([
           searchCount(
             `author:${GITHUB_USERNAME}+type:pr+is:merged`,
@@ -78,42 +76,46 @@ export default function GitHubContribution() {
   ]
 
   return (
-    <section id="activity" className="section-pad border-b border-ink-line">
-      <div className="mx-auto max-w-5xl px-6">
-        <div className="mb-12 max-w-2xl">
-          <p className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-accent-soft">
-            Activity
-          </p>
-          <h2 className="font-display text-3xl font-semibold tracking-tight text-paper md:text-4xl">
-            Open source footprint
+    <section id="activity" className="border-b border-ink-line">
+      <div className="section-rail">05 / Activity</div>
+
+      <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
+        <div className="mb-14 max-w-2xl">
+          <h2 className="font-display text-3xl font-bold tracking-tight text-paper md:text-5xl">
+            Open source <span className="text-accent">footprint</span>
           </h2>
           <p className="mt-4 text-fog">
             A snapshot of GitHub activity across repositories and contributions.
           </p>
         </div>
 
-        <div className="mb-10 grid grid-cols-1 gap-6 sm:grid-cols-3">
+        <div className="mb-10 grid grid-cols-1 border-t border-ink-line sm:grid-cols-3">
           {metrics.map((metric) => (
-            <div key={metric.label} className="border-t border-accent/50 pt-4">
-              <p className="text-sm text-fog">{metric.label}</p>
-              <p className="mt-1 font-display text-3xl font-semibold text-paper">
-                {loading ? '—' : error ? '—' : metric.value.toLocaleString()}
+            <div
+              key={metric.label}
+              className="border-b border-ink-line p-6 sm:border-r sm:last:border-r-0"
+            >
+              <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-mute">
+                {metric.label}
+              </p>
+              <p className="mt-3 font-display text-4xl font-bold text-paper">
+                {loading || error ? '—' : metric.value.toLocaleString()}
               </p>
             </div>
           ))}
         </div>
 
         {error && (
-          <p className="mb-6 text-sm text-fog">
-            Live stats are temporarily unavailable (GitHub rate limit). The
-            contribution chart below still reflects recent activity.
+          <p className="mb-6 font-mono text-[11px] uppercase tracking-[0.14em] text-mute">
+            Live stats temporarily unavailable · chart below still reflects
+            activity
           </p>
         )}
 
-        <div className="overflow-x-auto rounded-lg border border-ink-line bg-ink-raised/60 p-4">
+        <div className="border border-ink-line bg-ink-raised p-4 md:p-6">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="https://ghchart.rshah.org/3d9a8b/thiagoloureiro"
+            src="https://ghchart.rshah.org/4d7cff/thiagoloureiro"
             alt="Thiago Loureiro's GitHub contribution chart"
             className="mx-auto w-full max-w-5xl opacity-90"
           />

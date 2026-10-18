@@ -1,53 +1,54 @@
-import { GitHubIcon, LinkedInIcon } from './SocialIcons'
-import { BookOpen } from 'lucide-react'
-
 export default function Footer() {
   return (
-    <footer className="border-t border-ink-line">
-      <div className="mx-auto flex max-w-5xl flex-col gap-6 px-6 py-12 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <p className="font-display text-lg font-semibold text-paper">
-            Thiago Loureiro
-          </p>
-          <p className="mt-1 text-sm text-fog">
-            Technology Manager · Solution Architect · DevOps
-          </p>
-        </div>
+    <footer>
+      <div className="section-rail">Next up</div>
 
-        <div className="flex items-center gap-4">
-          <a
-            href="https://github.com/thiagoloureiro/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-fog transition-colors hover:text-accent-soft"
-            aria-label="GitHub"
-          >
-            <GitHubIcon className="h-5 w-5" />
-          </a>
+      <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
+        <h2 className="max-w-2xl font-display text-3xl font-bold tracking-tight text-paper md:text-5xl">
+          Build it with <span className="text-accent">me</span>.
+        </h2>
+        <p className="mt-4 max-w-xl text-fog">
+          Open to architecture reviews, platform work, and engineering
+          leadership conversations.
+        </p>
+
+        <div className="mt-10 flex flex-wrap">
           <a
             href="https://www.linkedin.com/in/thiago-loureiro-de-azevedo-dev/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-fog transition-colors hover:text-accent-soft"
-            aria-label="LinkedIn"
+            className="border border-ink-line bg-paper px-6 py-3 font-mono text-[11px] uppercase tracking-[0.16em] text-ink transition-colors hover:bg-accent hover:text-paper"
           >
-            <LinkedInIcon className="h-5 w-5" />
+            LinkedIn
+          </a>
+          <a
+            href="https://github.com/thiagoloureiro"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="border border-l-0 border-ink-line px-6 py-3 font-mono text-[11px] uppercase tracking-[0.16em] text-fog transition-colors hover:border-accent hover:text-paper"
+          >
+            GitHub
           </a>
           <a
             href="https://medium.com/@thiagoloureiro"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-fog transition-colors hover:text-accent-soft"
-            aria-label="Medium"
+            className="border border-l-0 border-ink-line px-6 py-3 font-mono text-[11px] uppercase tracking-[0.16em] text-fog transition-colors hover:border-accent hover:text-paper"
           >
-            <BookOpen className="h-5 w-5" />
+            Medium
           </a>
         </div>
       </div>
+
       <div className="border-t border-ink-line">
-        <p className="mx-auto max-w-5xl px-6 py-4 text-sm text-fog/70">
-          © {new Date().getFullYear()} Thiago Loureiro
-        </p>
+        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-6 py-5 sm:flex-row sm:items-center sm:justify-between">
+          <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-mute">
+            © {new Date().getFullYear()} Thiago Loureiro
+          </p>
+          <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-mute">
+            Systems · Platforms · Teams
+          </p>
+        </div>
       </div>
     </footer>
   )

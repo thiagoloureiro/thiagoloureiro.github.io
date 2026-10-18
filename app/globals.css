@@ -1,16 +1,18 @@
 @import "tailwindcss";
 
 @theme {
-  --font-display: var(--font-syne), ui-sans-serif, system-ui, sans-serif;
-  --font-body: var(--font-source), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex), ui-monospace, monospace;
 
-  --color-ink: #0b1018;
-  --color-ink-raised: #121925;
-  --color-ink-line: #1e2a3a;
-  --color-fog: #9aa8b8;
-  --color-paper: #e8eef4;
-  --color-accent: #3d9a8b;
-  --color-accent-soft: #5eb8a8;
+  --color-ink: #0a0a0a;
+  --color-ink-raised: #111111;
+  --color-ink-line: #2a2a2a;
+  --color-fog: #9a9a9a;
+  --color-mute: #6e6e6e;
+  --color-paper: #f2f2f2;
+  --color-accent: #4d7cff;
+  --color-accent-soft: #7aa0ff;
 
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
@@ -32,51 +34,50 @@
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
 
-  --radius-lg: var(--radius);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-sm: calc(var(--radius) - 4px);
+  --radius-lg: 0;
+  --radius-md: 0;
+  --radius-sm: 0;
 }
 
 @layer base {
   :root {
-    --background: 215 35% 6%;
-    --foreground: 210 30% 94%;
-    --card: 215 30% 9%;
-    --card-foreground: 210 30% 94%;
-    --popover: 215 30% 9%;
-    --popover-foreground: 210 30% 94%;
-    --primary: 170 44% 42%;
-    --primary-foreground: 215 35% 6%;
-    --secondary: 215 25% 14%;
-    --secondary-foreground: 210 30% 94%;
-    --muted: 215 25% 14%;
-    --muted-foreground: 210 15% 65%;
-    --accent: 170 44% 42%;
-    --accent-foreground: 215 35% 6%;
+    --background: 0 0% 4%;
+    --foreground: 0 0% 95%;
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 95%;
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 221 100% 65%;
+    --primary-foreground: 0 0% 4%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 95%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 60%;
+    --accent: 221 100% 65%;
+    --accent-foreground: 0 0% 4%;
     --destructive: 0 62% 40%;
     --destructive-foreground: 0 0% 98%;
-    --border: 215 25% 18%;
-    --input: 215 25% 18%;
-    --ring: 170 44% 42%;
-    --radius: 0.5rem;
+    --border: 0 0% 16%;
+    --input: 0 0% 16%;
+    --ring: 221 100% 65%;
+    --radius: 0;
   }
 
   * {
-    border-color: hsl(var(--border));
+    border-color: var(--color-ink-line);
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 
   body {
     @apply bg-ink text-paper;
-    background-image:
-      radial-gradient(ellipse 80% 50% at 10% -10%, rgba(61, 154, 139, 0.14), transparent 55%),
-      radial-gradient(ellipse 60% 40% at 90% 0%, rgba(30, 58, 90, 0.35), transparent 50%),
-      linear-gradient(180deg, #0b1018 0%, #0d131c 40%, #0b1018 100%);
-    background-attachment: fixed;
   }
 
   ::selection {
-    background: rgba(61, 154, 139, 0.35);
-    color: #e8eef4;
+    background: rgba(77, 124, 255, 0.35);
+    color: #f2f2f2;
   }
 }
 
@@ -85,48 +86,54 @@
     text-wrap: balance;
   }
 
-  .section-pad {
-    @apply py-20 md:py-28;
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+
+  .section-rail {
+    @apply border-b border-ink-line bg-ink-raised/40 px-6 py-3 font-mono text-[11px] uppercase tracking-[0.18em] text-mute;
+  }
+
+  .frame {
+    @apply border border-ink-line;
+  }
+
+  .tag {
+    @apply inline-flex items-center border border-ink-line px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-fog;
+  }
+
+  .tag-accent {
+    @apply border-accent/40 text-accent-soft;
   }
 
   .reveal {
-    animation: fade-up 0.7s ease-out both;
+    animation: fade-up 0.65s ease-out both;
   }
 
   .reveal-delay-1 {
-    animation-delay: 0.12s;
+    animation-delay: 0.1s;
   }
 
   .reveal-delay-2 {
-    animation-delay: 0.24s;
+    animation-delay: 0.2s;
   }
 
   .reveal-delay-3 {
-    animation-delay: 0.36s;
+    animation-delay: 0.3s;
   }
 }
 
 @keyframes fade-up {
   from {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-@keyframes drift {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-  50% {
-    transform: translate3d(0, -8px, 0);
-  }
-}
-
-.hero-glow {
-  animation: drift 10s ease-in-out infinite;
 }

@@ -1,17 +1,18 @@
 import type { Metadata } from 'next'
-import { Syne, Source_Sans_3 } from 'next/font/google'
+import { Space_Grotesk, IBM_Plex_Mono } from 'next/font/google'
 import './globals.css'
 import { siteDescription, siteName, siteTitle, siteUrl } from '@/lib/site'
 
-const syne = Syne({
+const grotesk = Space_Grotesk({
   subsets: ['latin'],
-  variable: '--font-syne',
+  variable: '--font-grotesk',
   display: 'swap',
 })
 
-const sourceSans = Source_Sans_3({
+const plex = IBM_Plex_Mono({
   subsets: ['latin'],
-  variable: '--font-source',
+  weight: ['400', '500'],
+  variable: '--font-plex',
   display: 'swap',
 })
 
@@ -27,8 +28,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${syne.variable} ${sourceSans.variable}`}>
-      <body className="font-body antialiased">{children}</body>
+    <html lang="en" className={`${grotesk.variable} ${plex.variable}`}>
+      <body className="font-display antialiased">{children}</body>
     </html>
   )
 }

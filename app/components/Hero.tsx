@@ -1,40 +1,37 @@
-import { ArrowDown } from 'lucide-react'
-
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden border-b border-ink-line">
-      <div
-        className="hero-glow pointer-events-none absolute -right-24 top-10 h-72 w-72 rounded-full bg-accent/20 blur-3xl"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute -left-16 bottom-0 h-56 w-56 rounded-full bg-sky-900/40 blur-3xl"
-        aria-hidden
-      />
+    <section className="border-b border-ink-line">
+      <div className="section-rail">01 / Portfolio</div>
 
-      <div className="relative mx-auto flex min-h-[78vh] max-w-5xl flex-col justify-center px-6 py-20 md:py-28">
-        <p className="reveal mb-5 text-sm font-medium uppercase tracking-[0.2em] text-accent-soft">
-          Portfolio
-        </p>
-        <h1 className="reveal reveal-delay-1 font-display text-5xl font-semibold leading-[1.05] tracking-tight text-paper sm:text-6xl md:text-7xl">
-          Thiago Loureiro
-        </h1>
-        <p className="reveal reveal-delay-2 mt-5 max-w-2xl font-display text-xl text-fog sm:text-2xl">
+      <div className="mx-auto max-w-6xl px-6 py-20 md:py-28 lg:py-32">
+        <p className="reveal mb-6 font-mono text-[11px] uppercase tracking-[0.2em] text-mute">
           Technology Manager · Solution Architect · DevOps
         </p>
-        <p className="reveal reveal-delay-3 mt-6 max-w-xl text-lg leading-relaxed text-fog/90">
-          I design cloud-native systems and lead engineering teams that ship
+
+        <h1 className="reveal reveal-delay-1 max-w-4xl font-display text-5xl font-bold leading-[1.02] tracking-tight text-paper sm:text-6xl md:text-7xl lg:text-8xl">
+          Platforms that scale.
+          <br />
+          Teams that <span className="text-accent">ship</span>.
+        </h1>
+
+        <p className="reveal reveal-delay-2 mt-8 max-w-2xl text-lg leading-relaxed text-fog md:text-xl">
+          I design cloud-native systems and lead engineering teams that deliver
           resilient platforms—microservices, Kubernetes, and modern delivery
           pipelines.
         </p>
 
-        <div className="reveal reveal-delay-3 mt-10 flex flex-wrap items-center gap-4">
+        <div className="reveal reveal-delay-3 mt-12 flex flex-wrap">
           <a
             href="#work"
-            className="inline-flex items-center gap-2 rounded-md bg-accent px-5 py-2.5 text-sm font-semibold text-ink transition hover:bg-accent-soft"
+            className="border border-ink-line bg-paper px-6 py-3 font-mono text-[11px] uppercase tracking-[0.16em] text-ink transition-colors hover:bg-accent hover:text-paper"
           >
             View selected work
-            <ArrowDown className="h-4 w-4" />
+          </a>
+          <a
+            href="#writing"
+            className="border border-l-0 border-ink-line px-6 py-3 font-mono text-[11px] uppercase tracking-[0.16em] text-fog transition-colors hover:border-accent hover:text-paper"
+          >
+            Read writing
           </a>
         </div>
       </div>

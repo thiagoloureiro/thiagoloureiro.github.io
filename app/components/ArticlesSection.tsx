@@ -40,41 +40,47 @@ const articles = [
 
 export default function ArticlesSection() {
   return (
-    <section id="writing" className="section-pad border-b border-ink-line">
-      <div className="mx-auto max-w-5xl px-6">
-        <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-          <div className="max-w-2xl">
-            <p className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-accent-soft">
-              Writing
-            </p>
-            <h2 className="font-display text-3xl font-semibold tracking-tight text-paper md:text-4xl">
-              Notes on platforms, security, and architecture
-            </h2>
-          </div>
-          <a
-            href="https://medium.com/@thiagoloureiro"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 text-sm font-medium text-fog transition-colors hover:text-accent-soft"
-          >
-            All on Medium
-            <ArrowUpRight className="h-4 w-4" />
-          </a>
+    <section id="writing" className="border-b border-ink-line">
+      <div className="section-rail flex items-center justify-between gap-4">
+        <span>03 / Writing</span>
+        <a
+          href="https://medium.com/@thiagoloureiro"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 text-fog transition-colors hover:text-accent-soft"
+        >
+          All on Medium
+          <ArrowUpRight className="h-3 w-3" />
+        </a>
+      </div>
+
+      <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
+        <div className="mb-14 max-w-2xl">
+          <h2 className="font-display text-3xl font-bold tracking-tight text-paper md:text-5xl">
+            Notes on platforms, security, and{' '}
+            <span className="text-accent">architecture</span>
+          </h2>
         </div>
 
-        <ul className="space-y-0">
-          {articles.map((article) => (
-            <li key={article.url} className="border-t border-ink-line last:border-b">
+        <ul className="border-t border-ink-line">
+          {articles.map((article, index) => (
+            <li key={article.url} className="border-b border-ink-line">
               <a
                 href={article.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex flex-col gap-2 py-5 transition-colors sm:flex-row sm:items-baseline sm:justify-between sm:gap-8"
+                className="group grid grid-cols-[3rem_1fr_auto] items-baseline gap-4 py-5 transition-colors hover:bg-ink-raised sm:grid-cols-[4rem_1fr_8rem_auto] sm:gap-6 sm:px-2"
               >
+                <span className="font-mono text-[11px] text-mute">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
                 <span className="font-medium text-paper transition-colors group-hover:text-accent-soft">
                   {article.title}
                 </span>
-                <span className="shrink-0 text-sm text-fog">{article.topic}</span>
+                <span className="hidden font-mono text-[10px] uppercase tracking-[0.14em] text-mute sm:block">
+                  {article.topic}
+                </span>
+                <ArrowUpRight className="h-4 w-4 text-mute transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent-soft" />
               </a>
             </li>
           ))}
